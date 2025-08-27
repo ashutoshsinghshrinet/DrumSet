@@ -1,12 +1,8 @@
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
-for(var i =0; i< numberOfDrumButtons; i++)
+function playSoundBasedOnEvent(key)
 {
-    document.querySelectorAll(".drum")[i].addEventListener("click", function() {
-
-       var buttonInnerHtml = this.innerHTML;
-       
-       switch(buttonInnerHtml)
+    switch(key)
        {
 
         case "w":
@@ -38,9 +34,24 @@ for(var i =0; i< numberOfDrumButtons; i++)
             audio.play();
             break;
         default:
-            console.log("InvalidEvent: " + buttonInnerHtml);
+            console.log("InvalidEvent: " + key);
        }
-    });
- 
-     
+
 }
+
+
+for(var i =0; i< numberOfDrumButtons; i++)
+{
+    document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+
+       var buttonInnerHtml = this.innerHTML;
+       playSoundBasedOnEvent(buttonInnerHtml);
+       
+    });
+}
+
+document.addEventListener("keypress", function(event)
+{
+    var keyPressed = event.key;
+    playSoundBasedOnEvent(keyPressed);
+});
