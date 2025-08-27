@@ -52,6 +52,17 @@ for(var i =0; i< numberOfDrumButtons; i++)
 
 document.addEventListener("keypress", function(event)
 {
+    debugger;
     var keyPressed = event.key;
+    var activeButton = document.querySelector("." + keyPressed);
+    if(activeButton)
+    {
+        activeButton.classList.add("drum-hover-effect");
+    }
+
+    
+    setTimeout(function() {
+            activeButton.classList.remove("drum-hover-effect");
+        }, 300)
     playSoundBasedOnEvent(keyPressed);
 });
